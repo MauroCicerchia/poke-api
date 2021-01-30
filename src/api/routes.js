@@ -1,6 +1,7 @@
 import express from "express";
+import pokemon from "./pokemon"
 const router = express.Router();
 
-//router.use("/yourPath", yourPathRouter);
+router.use("/pokemon", pokemon);
 
 export default router;
