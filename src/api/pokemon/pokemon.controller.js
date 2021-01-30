@@ -8,4 +8,8 @@ export default class Controller {
     getOne({ service, params: { id } }) {
         return service.getOne(id)
     }
+
+    getOneFull({ service, params: { id } }) {
+        return service.getOneFull(id)
+    }
 }

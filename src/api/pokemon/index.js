@@ -13,5 +13,6 @@ router.use((req, res, next) => {
 
 route.get("/", controller.get)
 route.get("/:id", controller.getOne);
+route.get("/:id/full", controller.getOneFull);
 
 export default router;
