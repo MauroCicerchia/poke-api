@@ -21,6 +21,7 @@
     "homepage": "https://github.com/MauroCicerchia/poke-api#readme",
     "dependencies": {
         "bluebird": "^3.7.2",
+        "cors": "^2.8.5",
         "endpoint-handler": "^2.0.3",
         "express": "^4.17.1",
         "lodash": "^4.17.15",
