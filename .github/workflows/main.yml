@@ -13,6 +13,8 @@ jobs:
     environment: deploy
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm i
       - name: Run a one-line script
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
