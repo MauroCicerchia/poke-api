@@ -1,0 +1,23 @@
+name: CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: deploy
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          HEROKU_USER: ${{ secrets.HEROKU_USER }}
+          HEROKU_PASSWORD: ${{ secrets.HEROKU_PASSWORD }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: make deploy
