@@ -6,4 +6,4 @@ COPY ./dist /app
 
 RUN npm i
 
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js" ]

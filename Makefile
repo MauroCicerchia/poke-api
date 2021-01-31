@@ -1,4 +1,4 @@
-APP=poke-api
+APP=daemon-poke-api
 COMMIT=$(shell git rev-parse HEAD)
 IMAGE=$(DOCKER_USER)/$(APP):$(COMMIT)
 
@@ -6,7 +6,7 @@ local: clean compile copy-files build local-docker
 
 deploy: clean compile copy-files build upload-heroku
 
-push-docker: build upload-docker
+push-docker: clean compile copy-files build upload-docker
 
 clean:
 	rm -rf dist
@@ -21,7 +21,7 @@ build:
 	docker build -t $(IMAGE) .
 
 local-docker:
-	docker run -p5000:5000 $(IMAGE)
+	docker run -p9001:9001 $(IMAGE)
 
 upload-docker:
 	docker login -u $(DOCKER_USER) -p $(DOCKER_PASSWORD)
