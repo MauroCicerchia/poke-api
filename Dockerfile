@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY ./dist /app
 
-RUN npm i
+RUN npm i --only=prod
 
 CMD [ "node", "index.js" ]
