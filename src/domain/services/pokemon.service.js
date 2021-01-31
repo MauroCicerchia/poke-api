@@ -1,6 +1,7 @@
 import _ from "lodash";
 import Promise from "bluebird";
 import Pokedex from "pokedex-promise-v2";
+import TiersApi from "../apis/tiers.api";
 import pokemonMapper from "./pokemon.mapper";
 import config from "../../config";
 
@@ -9,6 +10,7 @@ const { domain, pokeApi } = config;
 export default class PokemonService {
 	constructor() {
 		this.pokedex = new Pokedex({ cacheLimit: 5 * 60 * 1000 });
+		this.tiersApi = new TiersApi();
 	}
 
 	get(offset, limit) {
@@ -27,11 +29,19 @@ export default class PokemonService {
 	}
 
 	getOne(id) {
-		return this.getOneFull(id).then(pokemonMapper);
+		return this.getOneFull(id)
+			.then((pokemon) => this._addTier(pokemon))
+			.then(pokemonMapper);
 	}
 
 	getOneFull(id) {
 		return Promise.resolve(this.pokedex.getPokemonByName(id));
+	}
+
+	_addTier(pokemon) {
+		return this.tiersApi
+			.getTier(pokemon.id)
+			.then(({ tier }) => ({ ...pokemon, tier }));
 	}
 
 	_replaceUrl(url) {

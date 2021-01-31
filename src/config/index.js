@@ -6,5 +6,8 @@ export default {
     domain: process.env.DOMAIN || "http://localhost:9001/api",
     pokeApi: {
         url: process.env.POKE_API_URL || "https://pokeapi.co/api/v2"
+    },
+    tiersApi: {
+        url: process.env.TIERS_API_URL || "https://poke-tiers-api.herokuapp.com"
     }
 };
